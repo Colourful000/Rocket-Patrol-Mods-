@@ -7,6 +7,7 @@ class Play extends Phaser.Scene {
         this.load.image('rocket', './assets/shark.png');
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
+        this.load.image('gameover', './assets/gameover2.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', 
         {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -26,7 +27,7 @@ class Play extends Phaser.Scene {
         this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0.7);
         // add spaceships (x3)
         this.ship01 = new Spaceship(this, game.config.width , borderUISize*4, 'spaceship', 0, 30).setOrigin(1.7, 0);
-        this.ship02 = new Spaceship(this, game.config.width , borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(2.7,0);
+        this.ship02 = new Spaceship(this, game.config.width , borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(1.7,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(1.7,0);
         //add special spaceship (x1)
        // this.ship04 = new Spaceship(this, game.config.width, borderUISize*8 + borderPadding*8, 'spaceship1', 0, 50).setOrigin(0,0);
@@ -64,11 +65,10 @@ class Play extends Phaser.Scene {
         // 60-second play clock
         scoreConfig.fixedWidth = 0;
         this.clock = this.time.delayedCall(60000, () => {
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
+            this.add.sprite(50,330,'gameover').setOrigin(0,0);
             this.gameOver = true;
         }, null, this);
-
+        
     
     }
 
