@@ -9,7 +9,7 @@ class Menu extends Phaser.Scene {
     this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
     this.load.audio('bgm', './assets/sharkbackground.mp3');
 
-    this.load.image('bg', './assets/startbg.png');
+    this.load.image('bg', './assets/startbg1.png');
     this.load.image('gamestart', './assets/gamestart.png');
     this.load.image('tittle', './assets/tittle.png');
     this.load.image('fisheat', './assets/fisheat.png');
@@ -66,6 +66,8 @@ class Menu extends Phaser.Scene {
       // easy mode
       game.settings = {
         spaceshipSpeed: 3,
+        spaceshipSpeed2: 5,
+
         gameTimer: 600    
       }
       this.sound.play('sfx_select');
@@ -75,6 +77,7 @@ class Menu extends Phaser.Scene {
       // hard mode
       game.settings = {
         spaceshipSpeed: 4,
+        spaceshipSpeed2: 5,
         gameTimer: 450    
       }
       this.sound.play('sfx_select');

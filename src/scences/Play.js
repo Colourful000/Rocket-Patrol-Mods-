@@ -9,9 +9,13 @@ class Play extends Phaser.Scene {
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('gameover', './assets/gameover2.png');
         this.load.image('score', './assets/1.png');
+        this.load.image('spaceship1','./assets/spaceship1.png');
+        this.load.image('spaceship2','./assets/spaceship2.png');
+        
+
         
         // load spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png', 
+        this.load.spritesheet('explosion', './assets/explosion1.png', 
         {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
       }
     
@@ -31,8 +35,9 @@ class Play extends Phaser.Scene {
         this.ship01 = new Spaceship(this, game.config.width , borderUISize*4, 'spaceship', 0, 30).setOrigin(1.7, 0);
         this.ship02 = new Spaceship(this, game.config.width , borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(1.7,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(1.7,0);
-        //add special spaceship (x1)
-       // this.ship04 = new Spaceship(this, game.config.width, borderUISize*8 + borderPadding*8, 'spaceship1', 0, 50).setOrigin(0,0);
+        this.ship04 = new Spaceship(this, game.config.width, borderUISize*2 + borderPadding*2, 'spaceship1', 0, 40).setOrigin(1.7,0);
+        //special ship
+        this.ship05 = new Spaceship2(this, game.config.width, 200, 'spaceship2', 0, 80).setOrigin(1.7,0);
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -61,6 +66,8 @@ class Play extends Phaser.Scene {
             fixedWidth: 100
         }
         this.scoreLeft = this.add.text(33, 35, this.p1Score, scoreConfig);
+        
+
 
         // GAME OVER flag
         this.gameOver = false;
@@ -70,8 +77,7 @@ class Play extends Phaser.Scene {
             this.add.sprite(50,330,'gameover').setOrigin(0,0);
             this.gameOver = true;
         }, null, this);
-        
-    
+     
     }
 
     update() {
@@ -90,7 +96,8 @@ class Play extends Phaser.Scene {
             this.ship01.update();           // update spaceships (x3)
             this.ship02.update();
             this.ship03.update();
-           // this.ship04.update();
+            this.ship04.update();
+            this.ship05.update();
         } 
 
         // check collisions
@@ -104,11 +111,17 @@ class Play extends Phaser.Scene {
     }
     if (this.checkCollision(this.p1Rocket, this.ship01)) {
         this.p1Rocket.reset();
-        this.shipExplode(this.ship01);
-      
-    
-  }
+        this.shipExplode(this.ship01);     
+   }
+   if (this.checkCollision(this.p1Rocket, this.ship04)) {
+    this.p1Rocket.reset();
+    this.shipExplode(this.ship04);     
     }
+    if (this.checkCollision(this.p1Rocket, this.ship05)) {
+        this.p1Rocket.reset();
+        this.shipExplode(this.ship05);     
+    }
+}
 
     checkCollision(rocket, ship) {
         // simple AABB checking
