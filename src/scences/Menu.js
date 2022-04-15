@@ -47,7 +47,7 @@ class Menu extends Phaser.Scene {
   
  // this.add.sprite(0,0,'fisheat').setOrigin(0,0);
 
-
+ //​​On Windows 10 w/ python 3.X, type: ​py -3 -m http.server
   
   // define keys
   keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
