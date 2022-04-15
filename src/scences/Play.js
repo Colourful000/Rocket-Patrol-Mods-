@@ -8,7 +8,7 @@ class Play extends Phaser.Scene {
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('gameover', './assets/gameover2.png');
-        this.load.image('score', './assets/1.png');
+        this.load.image('score', './assets/11.png');
         this.load.image('spaceship1','./assets/spaceship1.png');
         this.load.image('spaceship2','./assets/spaceship2.png');
         
